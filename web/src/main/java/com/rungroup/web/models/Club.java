@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.rungroup.web.dto.ClubDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,4 +36,8 @@ public class Club {
 
     @UpdateTimestamp
     private LocalDateTime updatedOn;
+
+    public ClubDto mapToClub(Club club) {
+        return null;
+    }
 }

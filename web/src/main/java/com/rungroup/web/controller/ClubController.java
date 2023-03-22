@@ -2,10 +2,12 @@ package com.rungroup.web.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.rungroup.web.dto.ClubDto;
 import com.rungroup.web.models.Club;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ClubController {
     private ClubService clubService;
 
+   @Autowired 
     public ClubController(ClubService clubService) {
         super();
         this.clubService = clubService;
@@ -45,4 +48,16 @@ public class ClubController {
         return "redirect:/clubs";
     }
     
+    @GetMapping("/clubs/${clubId}/edit")
+    public String editClubForm(@PathVariable("clubId") Long clubId, Model model) {
+        ClubDto club = this.clubService.findClubById(clubId);
+        model.addAttribute("club", club);
+        return "clubs-edit";
+    }
+    @PostMapping("/clubs/{clubId}/edit")
+    public String updateClub(@PathVariable("clubId") Long clubId, @ModelAttribute("club") ClubDto club) {
+        club.setId(clubId);
+        this.clubService.updateClub(club);
+        return "redirect:/clubs";
+    }
 }
