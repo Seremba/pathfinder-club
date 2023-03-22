@@ -8,11 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.rungroup.web.dto.ClubDto;
 import com.rungroup.web.models.Club;
 import com.rungroup.web.service.ClubService;
-import org.springframework.web.bind.annotation.PostMapping;
 
 
 
@@ -48,12 +48,13 @@ public class ClubController {
         return "redirect:/clubs";
     }
     
-    @GetMapping("/clubs/${clubId}/edit")
+    @GetMapping("/clubs/{clubId}/edit")
     public String editClubForm(@PathVariable("clubId") Long clubId, Model model) {
         ClubDto club = this.clubService.findClubById(clubId);
         model.addAttribute("club", club);
         return "clubs-edit";
     }
+
     @PostMapping("/clubs/{clubId}/edit")
     public String updateClub(@PathVariable("clubId") Long clubId, @ModelAttribute("club") ClubDto club) {
         club.setId(clubId);
