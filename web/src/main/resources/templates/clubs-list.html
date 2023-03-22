@@ -4,6 +4,7 @@ layout:decorate="~{layout}"
 >
 <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
+            <!-- Navigation-->
           
             <!-- Page Content-->
             <section layout:fragment="body" class="py-5">
@@ -16,14 +17,15 @@ layout:decorate="~{layout}"
                         <div th:each="club : ${clubs}" class="col-lg-6">
                             <div class="position-relative mb-5">
                                 <img class="img-fluid rounded-3 mb-3" th:src=${club.photoUrl} alt="..." />
-                                <a th:title=${club.title} class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project name</a>
+
+                                <a th:title=${club.title} class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project Name</a>
                                 <a class="btn btn-primary" th:href="@{/clubs/{clubId}/edit(clubId=${club.id})}">Edit</a>
+
                             </div>
                         </div>
                        
                         </div>
                     </div>
-                </div>
             </section>
            
         </main>
