@@ -1,17 +1,19 @@
 package com.rungroup.web.models;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import com.rungroup.web.dto.ClubDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,7 +39,6 @@ public class Club {
     @UpdateTimestamp
     private LocalDateTime updatedOn;
 
-    public ClubDto mapToClub(Club club) {
-        return null;
-    }
+	@OneToMany(mappedBy = "club", cascade = CascadeType.REMOVE)
+	private Set<Event> events = new HashSet<>();
 }
