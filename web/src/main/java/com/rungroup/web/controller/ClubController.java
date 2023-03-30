@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rungroup.web.dto.ClubDto;
 import com.rungroup.web.models.Club;
@@ -43,6 +44,13 @@ public class ClubController {
 		return "redirect:/clubs";
 	}
 	
+	@GetMapping("/clubs/search")
+	public String searchClub(@RequestParam(value = "query") String query, Model model) {
+		List<ClubDto> clubs = clubService.searchClubs(query);
+		model.addAttribute("clubs", clubs);
+		
+		return "clubs-list";
+	}
 	@GetMapping("/clubs/{clubId}")
 	public String clubDetail(@PathVariable("clubId") Long clubId, Model model) {
 		ClubDto clubDto = clubService.findClubById(clubId);
