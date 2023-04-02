@@ -19,8 +19,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Event {
 	
@@ -48,4 +48,3 @@ public class Event {
 	@JoinColumn(name = "club_id", nullable = false)
 	private Club club;
 }
-

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.rungroup.web.models.Club;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,5 +34,7 @@ public class EventDto {
 	private LocalDateTime createdOn;
 	
 	private LocalDateTime updatedOn;
+	
+	private Club club;
 	
 }
