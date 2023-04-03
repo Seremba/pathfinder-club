@@ -1,5 +1,6 @@
 package com.rungroup.web.models;
 
+
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;

@@ -55,5 +55,12 @@ public class EventServiceImpl implements EventService {
 		return mapToEventDto(event);
 	}
 	
+	@Override
+	public void updateClub(EventDto eventDto) {
+		Event event = mapToEvent(eventDto);
+		eventRepository.save(event);
+		
+	}
+	
 	
 }
