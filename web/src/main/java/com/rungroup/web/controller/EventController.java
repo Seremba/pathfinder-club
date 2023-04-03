@@ -33,6 +33,15 @@ public class EventController {
 		return "events-list";
 		
 	}
+	
+	@GetMapping("/events/{eventId}")
+	public String viewEvent(@PathVariable("eventId") Long eventId, Model model) {
+		EventDto event = eventService.findEventById(eventId);
+		model.addAttribute("event", event);
+		
+		return "events-detail";
+	}
+	
 	@GetMapping("/events/{clubId}/new")
 	public String createEventForm(@PathVariable("clubId") Long clubId, Model model) {
 		Event event = new Event();
@@ -43,7 +52,6 @@ public class EventController {
 	}
 	
 	@PostMapping("/events/{clubId}")
-	
 	public String createEvent(@PathVariable("clubId") Long clubId, @ModelAttribute("event") EventDto eventDto, Model model) {
 		eventService.createEvent(clubId, eventDto);
 		
